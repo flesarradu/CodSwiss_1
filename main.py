@@ -3,7 +3,7 @@ from functools import partial
 
 
 def validateLogin(user, password):
-    if(user.get()=="flesar" and password.get()):
+    if(user.get()=="user" and password.get() == "passwd"):
         print("succes")
     else:
         print("wrong user/pass")
@@ -13,8 +13,8 @@ def validateLogin(user, password):
 
 
 tkWindow = Tk()
-tkWindow.geometry('400x150')
-tkWindow.title('Login Form')
+tkWindow.geometry('300x150')
+tkWindow.title('Interfata de logare')
 
 usernameLabel = Label(tkWindow, text="User Name").grid(row=0, column=0)
 username = StringVar()
