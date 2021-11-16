@@ -33,6 +33,11 @@ class RegisterPage(Toplevel):
             return
         u = User(username.get(), password.get())
         main.list.append(u)
+        sql = "INSERT INTO users(username, password) VALUES (%s, %s)"
+        val = (f"{u.username}",f"{u.password}")
+        main.mycursor.execute(sql,val)
+        main.mydb.commit()
+        print(main.mycursor.lastrowid)
         messagebox.showinfo("INFO", f"Userul {u.username} a fost adaugat cu succes")
 
     def button2Click(self):

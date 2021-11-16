@@ -26,17 +26,17 @@ class LoginPage(Tk):
 
     def validateLogin(self, user, password):
 
-        b = False
-        for var in main.list:
-            if user.get() == var.username:
-                b = True
-                if var.checkPassword(password.get()):
-                    print("succes")
-                else:
-                    print("wrong pass")
+        main.mycursor.execute(f"SELECT PASSWORD FROM USERS WHERE USERNAME='{user.get()}'")
+        result = main.mycursor.fetchall()
 
-        if not b:
-            print("wrong user")
+        if len(result) == 0:
+            print("Wrong username")
+            return
+        if password.get() == result[0][0]:
+            print("succes")
+        else:
+            print("Wrong pass")
+
 
         print("username entered :", user.get())
         print("password entered :", password.get())
